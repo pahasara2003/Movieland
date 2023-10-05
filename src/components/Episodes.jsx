@@ -1,4 +1,4 @@
-//Fuck you
+//Fuck you in hell
 
 import React, { useEffect, useState } from "react";
 import movieimage from "../assets/default_movie.jpg";

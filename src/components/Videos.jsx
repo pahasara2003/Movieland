@@ -36,7 +36,7 @@ export const Videos = ({ id }) => {
         const trailer = data.find((i) => i.type === "Trailer");
         return (
           <iframe
-            title="trailer"
+            title="update"
             width={size * 0.9}
             height={(size * 8.1) / 16}
             src={`https://www.youtube.com/embed/${trailer.key}`}
