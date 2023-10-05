@@ -1,3 +1,5 @@
+//Fuck you
+
 import React, { useEffect, useState } from "react";
 import movieimage from "../assets/default_movie.jpg";
 export const Episodes = ({ id, light }) => {
