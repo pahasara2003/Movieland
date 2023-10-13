@@ -30,7 +30,7 @@ export const CharacterPanel = ({ id, light, isActing }) => {
   const Card = ({ title, character, image, id, light, set_id, type }) => {
     return (
       <Link
-        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        to={`/Movieland/${type}/${title.replace(/ /g, "+")}`}
         state={[id, type]}
         className={`w-[200px] cursor-pointer`}
         onClick={() => {
