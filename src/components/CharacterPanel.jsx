@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import movieimage from "../assets/default_movie.jpg";
-export const CharacterPanel = ({ id, light, isActing, set_id }) => {
+import { Link } from "react-router-dom";
+
+export const CharacterPanel = ({ id, light, isActing }) => {
   const [cast, set_cast] = useState(null);
   const [crew, set_crew] = useState(null);
   const url = `https://api.themoviedb.org/3/person/${id[0]}/movie_credits?language=en-US`;
@@ -27,10 +29,11 @@ export const CharacterPanel = ({ id, light, isActing, set_id }) => {
 
   const Card = ({ title, character, image, id, light, set_id, type }) => {
     return (
-      <div
+      <Link
+        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        state={[id, type]}
         className={`w-[200px] cursor-pointer`}
         onClick={() => {
-          set_id([id, "movie"]);
           window.scrollTo({ top: 0 });
         }}
       >
@@ -43,7 +46,7 @@ export const CharacterPanel = ({ id, light, isActing, set_id }) => {
           <p className="text-red-500 font-bold">{type}</p>
           <h2>{character}</h2>
         </div>
-      </div>
+      </Link>
     );
   };
 
@@ -80,8 +83,8 @@ export const CharacterPanel = ({ id, light, isActing, set_id }) => {
 
   return (
     <>
-      <CardFlow data={cast} title={"movie"} light={light} set_id={set_id} />
-      <CardFlow data={crew} title={"movie"} light={light} set_id={set_id} />
+      <CardFlow data={cast} title={"movie"} light={light} />
+      <CardFlow data={crew} title={"movie"} light={light} />
     </>
   );
 };

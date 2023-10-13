@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import profile from "../assets/default_profile.jpeg";
-import { CharacterPanel } from "./CharacterPanel";
-import { CharacterPanel2 } from "./CharacterPanel2";
-
-export const ProfilePanel = ({ id, light, set_id }) => {
+import profile from "./assets/default_profile.jpeg";
+import { CharacterPanel } from "./components/CharacterPanel";
+import { CharacterPanel2 } from "./components/CharacterPanel2";
+import { useTheme, useID, useSetID } from "./Config";
+import { useLocation } from "react-router-dom";
+import Four04 from "./Four04";
+export const ProfilePage = () => {
+  const light = useTheme();
+  const location = useLocation();
+  const id = location.state;
   const [data, set_data] = useState(null);
   const [isActing, set] = useState(null);
   const url = `https://api.themoviedb.org/3/person/${id[0]}?language=en-US`;
@@ -22,7 +27,6 @@ export const ProfilePanel = ({ id, light, set_id }) => {
       const d = await response.json();
       set_data(d);
       set(data.known_for_department === "Acting");
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -70,36 +74,32 @@ export const ProfilePanel = ({ id, light, set_id }) => {
   };
 
   return (
-    <div>
-      {data !== null ? (
-        <Card
-          name={data.name}
-          bio={data.biography}
-          birth={data.birthday}
-          death={data.deathday}
-          place={data.place_of_birth}
-          department={data.known_for_department}
-          image={
-            data.profile_path !== null
-              ? `https://image.tmdb.org/t/p/w500${data.profile_path}`
-              : profile
-          }
-        />
-      ) : null}
-      <div className="flex flex-wrap gap-1 py-10 justify-center">
-        <CharacterPanel
-          id={id}
-          light={light}
-          isActing={isActing}
-          set_id={set_id}
-        />
-        <CharacterPanel2
-          id={id}
-          light={light}
-          isActing={isActing}
-          set_id={set_id}
-        />
-      </div>
-    </div>
+    <>
+      {id[0] !== null && id[1] === "person" ? (
+        <div>
+          {data !== null ? (
+            <Card
+              name={data.name}
+              bio={data.biography}
+              birth={data.birthday}
+              death={data.deathday}
+              place={data.place_of_birth}
+              department={data.known_for_department}
+              image={
+                data.profile_path !== null
+                  ? `https://image.tmdb.org/t/p/w500${data.profile_path}`
+                  : profile
+              }
+            />
+          ) : null}
+          <div className="flex flex-wrap gap-1 py-10 justify-center">
+            <CharacterPanel id={id} light={light} isActing={isActing} />
+            <CharacterPanel2 id={id} light={light} isActing={isActing} />
+          </div>
+        </div>
+      ) : (
+        <Four04 />
+      )}
+    </>
   );
 };

@@ -1,6 +1,8 @@
 import React from "react";
+import { useTheme } from "../Config";
 
-export const DetailsCard = ({ data, id, light }) => {
+export const DetailsCard = ({ id, data }) => {
+  const light = useTheme();
   return (
     <div className={`px-2 py-8 gap-2 flex flex-col w-[450px]`}>
       <h1 className="font-bold text-[2rem]  ">

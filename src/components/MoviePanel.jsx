@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination.jsx";
+import { useTheme } from "../Config.jsx";
+import { Link } from "react-router-dom";
 
-export const MoviePanel = ({ set_id, urls, options, title, type, light }) => {
+export const MoviePanel = ({ urls, options, title, type }) => {
+  const light = useTheme();
   const [Query, setQuery] = useState([0]);
   const [data, setData] = useState(null);
   const [page_no, goto_page] = useState(0);
@@ -25,18 +28,24 @@ export const MoviePanel = ({ set_id, urls, options, title, type, light }) => {
 
   const Card = ({ title, image, id, type, ratings }) => {
     return (
-      <div
-        className="cursor-pointer  my-1  w-[250px] "
+      <Link
+        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        state={[id, type]}
+        className="cursor-pointer   my-1  w-[250px] "
         onClick={() => {
-          set_id([id, type]);
           window.scrollTo({ top: 0 });
         }}
       >
-        <img
-          className="w-full h-[350px] object-cover "
-          src={image}
-          alt={{ image } + "poster"}
-        />
+        <div className="w-full loader h-[350px] ">
+          <img
+            className="w-full opacity-0 h-[350px] object-cover "
+            src={image}
+            alt={{ image } + "poster"}
+            onLoad={(e) => {
+              e.target.style.opacity = 1;
+            }}
+          />
+        </div>
         <div>
           <h1 className="text-center p-2 ">{title}</h1>
           <h2 className="text-center text-red-500 font-bold ">
@@ -45,13 +54,13 @@ export const MoviePanel = ({ set_id, urls, options, title, type, light }) => {
             {ratings}
           </h2>
         </div>
-      </div>
+      </Link>
     );
   };
 
   function Page({ n, type }) {
     return (
-      <div className="flex pb-5 flex-wrap justify-center ">
+      <div className="flex  pb-5 flex-wrap justify-center ">
         {data !== null
           ? data.slice(5 * n, 5 * n + 5).map((item, i) => {
               return (

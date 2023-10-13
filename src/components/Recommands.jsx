@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import movieimage from "../assets/default_movie.jpg";
+import { Link } from "react-router-dom";
 
-export const Recommands = ({ id, set_id, light }) => {
+export const Recommands = ({ id, light }) => {
   const [data, set_data] = useState();
   const url = `https://api.themoviedb.org/3/${id[1]}/${id[0]}/recommendations?language=en-US&page=1`;
   const options = {
@@ -18,7 +19,6 @@ export const Recommands = ({ id, set_id, light }) => {
       const response = await fetch(url, options);
       const d = await response.json();
       set_data(d.results);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -30,10 +30,11 @@ export const Recommands = ({ id, set_id, light }) => {
 
   const Card = ({ season, type, lan, image, rating, id, light }) => {
     return (
-      <div
+      <Link
         className={`w-[250px] cursor-pointer`}
+        to={`/movieland/${type}/${season.replace(/ /g, "+")}`}
+        state={[id, type]}
         onClick={() => {
-          set_id([id, type]);
           window.scrollTo({ top: 0 });
         }}
       >
@@ -50,7 +51,7 @@ export const Recommands = ({ id, set_id, light }) => {
             <i class="fa-solid fa-star"></i> {rating}
           </p>
         </div>
-      </div>
+      </Link>
     );
   };
 

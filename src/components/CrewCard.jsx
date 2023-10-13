@@ -1,13 +1,16 @@
 import React from "react";
 import profile from "../assets/default_profile.jpeg";
-export const CrewCard = ({ crew, data, light, set_id }) => {
+import { useTheme } from "../Config";
+import { Link } from "react-router-dom";
+
+export const CrewCard = ({ crew, data }) => {
+  const light = useTheme();
   const CastCard = ({ image, name, character, id, set_id }) => {
     return (
-      <div
+      <Link
+        to={`/movieland/person/${name.replace(/ /g, "+")}`}
+        state={[id, "person"]}
         className="flex justify-start divide-y cursor-pointer"
-        onClick={() => {
-          set_id([id, "person"]);
-        }}
       >
         <img
           className="w-[50px] h-[50px] object-cover rounded-full  m-5 my-2"
@@ -24,17 +27,16 @@ export const CrewCard = ({ crew, data, light, set_id }) => {
           </span>
           <span>{character}</span>
         </div>
-      </div>
+      </Link>
     );
   };
 
   const BoardCard = ({ image, name, character, id, set_id }) => {
     return (
-      <div
+      <Link
         className="flex flex-col w-[80px] items-start  cursor-pointer"
-        onClick={() => {
-          set_id([id, "person"]);
-        }}
+        to={`/movieland/person/${name.replace(/ /g, "+")}`}
+        state={[id, "person"]}
       >
         <span className="text-center">
           {character !== "Original Music Composer" ? character : "Music"}
@@ -45,7 +47,7 @@ export const CrewCard = ({ crew, data, light, set_id }) => {
         />
 
         <span className="text-center">{name}</span>
-      </div>
+      </Link>
     );
   };
 
@@ -63,7 +65,6 @@ export const CrewCard = ({ crew, data, light, set_id }) => {
                     : profile
                 }
                 id={c.id}
-                set_id={set_id}
               />
             );
           })
@@ -89,7 +90,6 @@ export const CrewCard = ({ crew, data, light, set_id }) => {
                         : profile
                     }
                     id={c.id}
-                    set_id={set_id}
                   />
                 );
               })

@@ -1,10 +1,12 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { DetailsCard } from "./DetailsCard";
 import { CrewCard } from "./CrewCard";
 import movieimage from "../assets/default_movie.jpg";
+import { useTheme, useID, useSetID } from "../Config";
 
-export const DetailsPanel = ({ id, light, set_id }) => {
+export const DetailsPanel = ({ id, set_id }) => {
+  const light = useTheme();
   const [data, setdata] = useState([]);
   const [images, setImages] = useState([null]);
   const [crew, setcrew] = useState([null]);
@@ -27,7 +29,7 @@ export const DetailsPanel = ({ id, light, set_id }) => {
       .catch((err) => console.error("error:" + err));
   };
   const get_images = async () => {
-    const url = `https://api.themoviedb.org/3/${id[1]}/${id}/images`;
+    const url = `https://api.themoviedb.org/3/${id[1]}/${id[0]}/images`;
     const options = {
       method: "GET",
       headers: {
@@ -40,6 +42,7 @@ export const DetailsPanel = ({ id, light, set_id }) => {
       .then((res) => res.json())
       .then((json) => {
         setImages(json);
+        console.log(json);
       })
       .catch((err) => console.error("error:" + err));
   };
@@ -63,7 +66,7 @@ export const DetailsPanel = ({ id, light, set_id }) => {
       .catch((err) => console.error("error:" + err));
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     get_details();
     get_images();
     get_crew();
@@ -72,7 +75,7 @@ export const DetailsPanel = ({ id, light, set_id }) => {
   return (
     <>
       <div
-        className={`w-full flex flex-wrap justify-center relative before:block before:absolute before:-inset-0  before:bg-gradient-to-t to-transparent ${
+        className={`w-full min-h-[200px] loader flex flex-wrap justify-center relative after:block after:absolute after:inset-0 after:z-[20] after:bg-gradient-to-t to-transparent ${
           light ? "from-white" : "from-[#1b1b1f]"
         } `}
       >
@@ -80,8 +83,12 @@ export const DetailsPanel = ({ id, light, set_id }) => {
           images.backdrops.slice(0, 8).map((i) => {
             return (
               <img
-                className="w-[25%]"
-                src={`https://image.tmdb.org/t/p/w500${i.file_path}`}
+                className="w-[25%] object-contain"
+                src={
+                  i.file_path == [] || i.file_path == null
+                    ? movieimage
+                    : `https://image.tmdb.org/t/p/w500${i.file_path}`
+                }
               />
             );
           })}
@@ -101,8 +108,8 @@ export const DetailsPanel = ({ id, light, set_id }) => {
               : `https://image.tmdb.org/t/p/w500${data.poster_path}`
           }
         />
-        <DetailsCard data={data} id={id} light={light} />
-        <CrewCard crew={crew} data={data} light={light} set_id={set_id} />
+        <DetailsCard data={data} id={id} />
+        <CrewCard crew={crew} data={data} />
       </div>
     </>
   );

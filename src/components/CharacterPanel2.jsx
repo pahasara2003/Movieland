@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import movieimage from "../assets/default_movie.jpg";
+import { Link } from "react-router-dom";
 export const CharacterPanel2 = ({ id, light, isActing, set_id }) => {
   const [cast, set_cast] = useState(null);
   const [crew, set_crew] = useState(null);
@@ -25,12 +26,13 @@ export const CharacterPanel2 = ({ id, light, isActing, set_id }) => {
     }
   };
 
-  const Card = ({ title, character, image, id, light, set_id, type }) => {
+  const Card = ({ title, character, image, id, light, type }) => {
     return (
-      <div
+      <Link
         className={`w-[200px] cursor-pointer`}
+        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        state={[id, type]}
         onClick={() => {
-          set_id([id, "movie"]);
           window.scrollTo({ top: 0 });
         }}
       >
@@ -44,7 +46,7 @@ export const CharacterPanel2 = ({ id, light, isActing, set_id }) => {
 
           <h2>{character}</h2>
         </div>
-      </div>
+      </Link>
     );
   };
 
@@ -82,8 +84,8 @@ export const CharacterPanel2 = ({ id, light, isActing, set_id }) => {
   return (
     <>
       {" "}
-      <CardFlow data={cast} title={"tv"} light={light} set_id={set_id} />
-      <CardFlow data={crew} title={"tv"} light={light} set_id={set_id} />
+      <CardFlow data={cast} title={"tv"} light={light} />
+      <CardFlow data={crew} title={"tv"} light={light} />
     </>
   );
 };

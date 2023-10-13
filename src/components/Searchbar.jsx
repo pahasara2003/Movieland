@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import movieimage from "../assets/default_movie.jpg";
+import { useTheme } from "../Config";
+import Buttons from "./Buttons";
+import { Link } from "react-router-dom";
 
-export default function Searchbar({ set_id, light }) {
+export default function Searchbar() {
+  const light = useTheme();
   const [data, setdata] = useState([]);
   const [display, setdisplay] = useState(false);
   const [name, set_name] = useState("pirates of the caribbean");
@@ -13,36 +17,42 @@ export default function Searchbar({ set_id, light }) {
         `${url}query=${name}&api_key=3b70837889f9228e17e3353b127f532f&sort_by=popularity.asc`
       );
       const result = await response.json();
-      setdata(result.results);
+      setdata(result.results.sort((b, a) => a.vote_average > b.vote_average));
+      console.log(result.results);
     } catch (error) {}
   };
 
   const Card = ({ title, image, type, id }) => {
     return (
-      <div
-        className={`h-[70px] cursor-pointer ${
+      <Link
+        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        state={[id, type]}
+        className={`h-[80px] cursor-pointer overflow-hidden ${
           light ? "bg-white shadow-gray-200" : "text-white  shadow-[#1d1d1f]"
         } shadow-md my-1  w-full flex items-center`}
         onClick={() => {
-          set_id([id, type]);
           setdisplay(false);
           document.getElementById("search").value = "";
         }}
       >
-        <img
-          className="w-[80px] h-full object-contain object-center m-2"
-          src={
-            image == undefined || image == null
-              ? movieimage
-              : `https://image.tmdb.org/t/p/w500${image}`
-          }
-          alt={"ter"}
-        />
+        <div className="w-[66px] loader h-[100px] m-2">
+          <img
+            className=" w-[80px] opacity-0 h-full object-cover object-center "
+            src={
+              image === undefined || image === null
+                ? movieimage
+                : `https://image.tmdb.org/t/p/w500${image}`
+            }
+            onLoad={(e) => {
+              e.target.style.opacity = 1;
+            }}
+          />
+        </div>
         <div>
           <h1 className="text-[0.8rem] ">{title}</h1>
           <p className="text-[0.8rem] font-medium">{type}</p>
         </div>
-      </div>
+      </Link>
     );
   };
 
@@ -101,6 +111,7 @@ export default function Searchbar({ set_id, light }) {
           </div>
         ) : null}
       </div>
+      <Buttons />
     </>
   );
 }
