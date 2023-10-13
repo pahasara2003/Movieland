@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Movieland/static/css/main.7589b4cf.css",
+    "main.js": "/Movieland/static/js/main.cd08e13d.js",
+    "static/js/787.e253fc0a.chunk.js": "/Movieland/static/js/787.e253fc0a.chunk.js",
+    "static/media/fa-solid-900.ttf": "/Movieland/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
+    "static/media/fa-brands-400.ttf": "/Movieland/static/media/fa-brands-400.150de8eaa454d669c405.ttf",
+    "static/media/fa-solid-900.woff2": "/Movieland/static/media/fa-solid-900.bb975c966c37455a1bc3.woff2",
+    "static/media/fa-brands-400.woff2": "/Movieland/static/media/fa-brands-400.e033a13ee751afc1860c.woff2",
+    "static/media/fa-regular-400.ttf": "/Movieland/static/media/fa-regular-400.d87474231f4192884802.ttf",
+    "static/media/default_movie.jpg": "/Movieland/static/media/default_movie.79fb17bf4d22c1454cb5.jpg",
+    "static/media/fa-regular-400.woff2": "/Movieland/static/media/fa-regular-400.3223dc79c1adee56370b.woff2",
+    "static/media/default_profile.jpeg": "/Movieland/static/media/default_profile.64502082eb2b5caae44e.jpeg",
+    "static/media/fa-v4compatibility.ttf": "/Movieland/static/media/fa-v4compatibility.0e3a648be390bd8cb094.ttf",
+    "static/media/fa-v4compatibility.woff2": "/Movieland/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
+    "index.html": "/Movieland/index.html",
+    "main.7589b4cf.css.map": "/Movieland/static/css/main.7589b4cf.css.map",
+    "main.cd08e13d.js.map": "/Movieland/static/js/main.cd08e13d.js.map",
+    "787.e253fc0a.chunk.js.map": "/Movieland/static/js/787.e253fc0a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7589b4cf.css",
+    "static/js/main.cd08e13d.js"
+  ]
+}
