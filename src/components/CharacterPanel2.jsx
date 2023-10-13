@@ -30,7 +30,7 @@ export const CharacterPanel2 = ({ id, light, isActing, set_id }) => {
     return (
       <Link
         className={`w-[200px] cursor-pointer`}
-        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        to={`/Movieland/${type}/${title.replace(/ /g, "+")}`}
         state={[id, type]}
         onClick={() => {
           window.scrollTo({ top: 0 });

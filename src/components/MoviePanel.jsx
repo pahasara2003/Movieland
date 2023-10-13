@@ -29,7 +29,7 @@ export const MoviePanel = ({ urls, options, title, type }) => {
   const Card = ({ title, image, id, type, ratings }) => {
     return (
       <Link
-        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        to={`/Movieland/${type}/${title.replace(/ /g, "+")}`}
         state={[id, type]}
         className="cursor-pointer   my-1  w-[250px] "
         onClick={() => {

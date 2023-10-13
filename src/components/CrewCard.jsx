@@ -8,7 +8,7 @@ export const CrewCard = ({ crew, data }) => {
   const CastCard = ({ image, name, character, id, set_id }) => {
     return (
       <Link
-        to={`/movieland/person/${name.replace(/ /g, "+")}`}
+        to={`/Movieland/person/${name.replace(/ /g, "+")}`}
         state={[id, "person"]}
         className="flex justify-start divide-y cursor-pointer"
       >
@@ -35,7 +35,7 @@ export const CrewCard = ({ crew, data }) => {
     return (
       <Link
         className="flex flex-col w-[80px] items-start  cursor-pointer"
-        to={`/movieland/person/${name.replace(/ /g, "+")}`}
+        to={`/Movieland/person/${name.replace(/ /g, "+")}`}
         state={[id, "person"]}
       >
         <span className="text-center">

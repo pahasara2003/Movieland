@@ -25,7 +25,7 @@ export default function Searchbar() {
   const Card = ({ title, image, type, id }) => {
     return (
       <Link
-        to={`/movieland/${type}/${title.replace(/ /g, "+")}`}
+        to={`/Movieland/${type}/${title.replace(/ /g, "+")}`}
         state={[id, type]}
         className={`h-[80px] cursor-pointer overflow-hidden ${
           light ? "bg-white shadow-gray-200" : "text-white  shadow-[#1d1d1f]"

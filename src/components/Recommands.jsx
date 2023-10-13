@@ -32,7 +32,7 @@ export const Recommands = ({ id, light }) => {
     return (
       <Link
         className={`w-[250px] cursor-pointer`}
-        to={`/movieland/${type}/${season.replace(/ /g, "+")}`}
+        to={`/Movieland/${type}/${season.replace(/ /g, "+")}`}
         state={[id, type]}
         onClick={() => {
           window.scrollTo({ top: 0 });

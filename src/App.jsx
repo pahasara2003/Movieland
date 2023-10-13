@@ -10,12 +10,12 @@ export default function App() {
   return (
     <Config>
       <Routes>
-        <Route path="/movieland/" element={<HomePage />} />
-        <Route path="/movieland/movie/:name" element={<MovieTvPage />} />
-        <Route path="/movieland/tv/:name" element={<MovieTvPage />} />
-        <Route path="/movieland/person/:name" element={<ProfilePage />} />
-        <Route path="/movieland/*" element={<Four04 />} />
-        <Route path="/movieland/:type/*" element={<Four04 />} />
+        <Route path="/Movieland/" element={<HomePage />} />
+        <Route path="/Movieland/movie/:name" element={<MovieTvPage />} />
+        <Route path="/Movieland/tv/:name" element={<MovieTvPage />} />
+        <Route path="/Movieland/person/:name" element={<ProfilePage />} />
+        <Route path="/Movieland/*" element={<Four04 />} />
+        <Route path="/Movieland/:type/*" element={<Four04 />} />
       </Routes>
     </Config>
   );
