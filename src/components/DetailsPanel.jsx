@@ -42,7 +42,6 @@ export const DetailsPanel = ({ id, set_id }) => {
       .then((res) => res.json())
       .then((json) => {
         setImages(json);
-        console.log(json);
       })
       .catch((err) => console.error("error:" + err));
   };
@@ -70,26 +69,27 @@ export const DetailsPanel = ({ id, set_id }) => {
     get_details();
     get_images();
     get_crew();
-    console.log(crew);
   }, [id]);
   return (
     <>
       <div
-        className={`w-full min-h-[200px] loader flex flex-wrap justify-center relative after:block after:absolute after:inset-0 after:z-[20] after:bg-gradient-to-t to-transparent ${
+        className={`w-full min-h-[200px]  flex flex-wrap justify-center relative after:block after:absolute after:inset-0 after:z-[20] after:bg-gradient-to-t to-transparent ${
           light ? "from-white" : "from-[#1b1b1f]"
         } `}
       >
         {images.backdrops !== undefined &&
           images.backdrops.slice(0, 8).map((i) => {
             return (
-              <img
-                className="w-[25%] object-contain"
-                src={
-                  i.file_path == [] || i.file_path == null
-                    ? movieimage
-                    : `https://image.tmdb.org/t/p/w500${i.file_path}`
-                }
-              />
+              (
+                <img
+                  className="w-[25%] object-contain"
+                  src={
+                    i.file_path == [] || i.file_path == null
+                      ? movieimage
+                      : `https://image.tmdb.org/t/p/w500${i.file_path}`
+                  }
+                />
+              ) || <h1 className="text-white">Hello</h1>
             );
           })}
       </div>
