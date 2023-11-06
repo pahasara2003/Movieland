@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Movieland/static/css/main.71e74673.css",
-    "main.js": "/Movieland/static/js/main.ab0a4c82.js",
+    "main.js": "/Movieland/static/js/main.3ee6074b.js",
     "static/js/787.e253fc0a.chunk.js": "/Movieland/static/js/787.e253fc0a.chunk.js",
     "static/media/fa-solid-900.ttf": "/Movieland/static/media/fa-solid-900.4a2cd718d7031b732e76.ttf",
     "static/media/fa-brands-400.ttf": "/Movieland/static/media/fa-brands-400.150de8eaa454d669c405.ttf",
@@ -15,11 +15,11 @@
     "static/media/fa-v4compatibility.woff2": "/Movieland/static/media/fa-v4compatibility.68577e40f3e70067b5da.woff2",
     "index.html": "/Movieland/index.html",
     "main.71e74673.css.map": "/Movieland/static/css/main.71e74673.css.map",
-    "main.ab0a4c82.js.map": "/Movieland/static/js/main.ab0a4c82.js.map",
+    "main.3ee6074b.js.map": "/Movieland/static/js/main.3ee6074b.js.map",
     "787.e253fc0a.chunk.js.map": "/Movieland/static/js/787.e253fc0a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.71e74673.css",
-    "static/js/main.ab0a4c82.js"
+    "static/js/main.3ee6074b.js"
   ]
 }
