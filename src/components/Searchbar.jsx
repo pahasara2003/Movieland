@@ -18,7 +18,6 @@ export default function Searchbar() {
       );
       const result = await response.json();
       setdata(result.results.sort((b, a) => a.vote_average > b.vote_average));
-      console.log(result.results);
     } catch (error) {}
   };
 
@@ -26,7 +25,7 @@ export default function Searchbar() {
     return (
       <Link
         to={`/Movieland/${type}/${title.replace(/ /g, "+")}`}
-        state={[id, type]}
+        state={[id, type, false]}
         className={`h-[80px] cursor-pointer overflow-hidden ${
           light ? "bg-white shadow-gray-200" : "text-white  shadow-[#1d1d1f]"
         } shadow-md my-1  w-full flex items-center`}

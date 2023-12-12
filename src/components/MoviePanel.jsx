@@ -20,7 +20,6 @@ export const MoviePanel = ({ urls, options, title, type }) => {
     fetch(urls[Query[0]], setup)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.results);
         setData(json.results);
       })
       .catch((err) => console.error("error:" + err));
@@ -50,7 +49,7 @@ export const MoviePanel = ({ urls, options, title, type }) => {
           <h1 className="text-center p-2 ">{title}</h1>
           <h2 className="text-center text-red-500 font-bold ">
             {" "}
-            <i class="fa-solid fa-star"></i> &nbsp;
+            <i className="fa-solid fa-star"></i> &nbsp;
             {ratings}
           </h2>
         </div>
@@ -103,7 +102,7 @@ export const MoviePanel = ({ urls, options, title, type }) => {
         light
           ? "bg-white"
           : "bg-gradient-to-r from-[#29292e] to-[#1c1d1f] text-white ring-[#2f2f36] ring-1"
-      }  w-[90%] shadow-md  my-5 mt-[100px] flex flex-wrap justify-center`}
+      }  w-[90%] shadow-md  my-5 mt-[100px] flex flex-wrap justify-center mx-auto`}
     >
       <div className="w-full flex justify-evenly flex-wrap p-[50px] pb-3 text-center">
         <h1 className="font-bold text-[2rem] mx-5">{title}</h1>
@@ -116,6 +115,7 @@ export const MoviePanel = ({ urls, options, title, type }) => {
               onClick={() => {
                 setQuery([i]);
               }}
+              key={i}
             >
               {o}
             </li>

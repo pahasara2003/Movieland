@@ -1,11 +1,14 @@
 import React from "react";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DetailsCard } from "./DetailsCard";
 import { CrewCard } from "./CrewCard";
 import movieimage from "../assets/default_movie.jpg";
-import { useTheme, useID, useSetID } from "../Config";
+import { useTheme } from "../Config";
+import Loader from "./Loader";
 
-export const DetailsPanel = ({ id, set_id }) => {
+export const DetailsPanel = ({ id }) => {
+  const image = useRef();
+  const [loaded, setLoaded] = useState(false);
   const light = useTheme();
   const [data, setdata] = useState([]);
   const [images, setImages] = useState([null]);
@@ -65,7 +68,9 @@ export const DetailsPanel = ({ id, set_id }) => {
       .catch((err) => console.error("error:" + err));
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    setLoaded(false);
+
     get_details();
     get_images();
     get_crew();
@@ -80,7 +85,7 @@ export const DetailsPanel = ({ id, set_id }) => {
         {images.backdrops !== undefined &&
           images.backdrops.slice(0, 8).map((i) => {
             return (
-              (
+              <>
                 <img
                   className="w-[25%] object-contain"
                   src={
@@ -89,7 +94,7 @@ export const DetailsPanel = ({ id, set_id }) => {
                       : `https://image.tmdb.org/t/p/w500${i.file_path}`
                   }
                 />
-              ) || <h1 className="text-white">Hello</h1>
+              </>
             );
           })}
       </div>
@@ -101,13 +106,20 @@ export const DetailsPanel = ({ id, set_id }) => {
         } justify-center gap-5 w-full px-10 shadow-lg z-40 relative m-auto mb-10 pb-10`}
       >
         <img
-          className="w-[370px] object-cover"
+          ref={image}
+          className={`w-[370px] object-cover ${loaded ? "block" : "hidden"}`}
           src={
             data.poster_path == undefined || data.poster_path == null
               ? movieimage
               : `https://image.tmdb.org/t/p/w500${data.poster_path}`
           }
+          onLoad={() => {
+            setTimeout(() => {
+              setLoaded(true);
+            }, 500);
+          }}
         />
+        {!loaded && <Loader w={"370px"} h={"250px"} round={"none"} />}
         <DetailsCard data={data} id={id} />
         <CrewCard crew={crew} data={data} />
       </div>

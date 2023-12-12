@@ -21,7 +21,7 @@ let options_tv = ["Top Rated", "On The Air", "Popular", "Airing Today"];
 export default function HomePage() {
   const id = useID();
   return (
-    <div className="flex flex-col items-center">
+    <div className="">
       <MoviePanel
         title={"Movies"}
         urls={url_movie}

@@ -6,9 +6,10 @@ export default function Pagination({ count, func, opened, light }) {
 
   return (
     <div className="flex justify-center w-full p-1">
-      {pages.map((page) => {
+      {pages.map((page, i) => {
         return (
           <p
+            key={i}
             className={
               opened === page
                 ? `${
